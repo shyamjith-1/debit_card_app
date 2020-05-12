@@ -23,7 +23,7 @@ node {
    
 }
 stage('Ansible Playbook Execution') {
-sh label: 'Ansible', script: 'ansible-playbook -i inventory -u testing playbook.yml'
+sh label: 'Ansible', script: 'ansible-playbook -i inventory -u production playbook.yml'
 }
 }
 }
