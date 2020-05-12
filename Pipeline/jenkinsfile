@@ -2,7 +2,7 @@ node {
      
   stage('Git-Checkout') {
    sh 'rm -rf debit_card_management_app'
-   sh 'git clone -b Production https://devops311@bitbucket.org/accelerators-devops/debit_card_management_app.git'
+   sh 'git clone -b master https://devops311@bitbucket.org/accelerators-devops/debit_card_management_app.git'
   }
     
  def project_path="debit_card_management_app/Ansible"
