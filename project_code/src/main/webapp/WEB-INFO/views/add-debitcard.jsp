@@ -23,7 +23,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Debit Card App</title>
 <style type="text/css">
 div#message 
 {
