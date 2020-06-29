@@ -6,6 +6,7 @@ pipelines:
         caches:
           - maven
         script:
+          - cd project_code/
           - mvn clean
     - step:
         name: maven package
