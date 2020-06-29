@@ -13,6 +13,7 @@ pipelines:
         caches:
           - maven
         script:
+             - cd project_code/
              - mvn package
              - ls target/
     - step:
