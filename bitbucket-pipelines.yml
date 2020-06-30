@@ -6,14 +6,25 @@ pipelines:
         caches:
           - maven
         script:
-          - mvn clean
+          - cd project_code/
+          - mvn clean 
     - step:
         name: maven package
         caches:
           - maven
         script:
+             - cd project_code/
              - mvn package
              - ls target/
+    - step:
+          name: maven install
+          caches:
+               - maven
+          script:
+           - cd project_code/
+           - mvn install 
+             
+             
     - step:
          name: deployment
          deployment: production
