@@ -8,7 +8,8 @@ pipelines:
         script:
           - cd project_code/
           - mvn clean install
-          - ls target/
+        artifacts:
+           - target/debitcardcustomer-0.0.1-SNAPSHOT.war
              
     - step:
          name: deployment
@@ -16,10 +17,4 @@ pipelines:
          caches:
            - maven
          script:
-                 - pipe: microsoft/azure-web-apps-deploy:1.0.3
-                   variables:
-                           AZURE_APP_ID: $AZURE_APP_ID
-                           AZURE_PASSWORD: $AZURE_PASSWORD
-                           AZURE_TENANT_ID: $AZURE_TENANT_ID
-                           AZURE_RESOURCE_GROUP: $AZURE_RESOURCE_GROUP
-                           AZURE_APP_NAME: $AZURE_APP_NAME
+                  - ./deploy-my-app.sh
