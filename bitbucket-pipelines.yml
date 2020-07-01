@@ -32,5 +32,6 @@ pipelines:
          caches:
            - maven
          script:
-            - ansible-playbook deploy.yml -i "$PRODUCTION_SERVER," -e branch=master
+         - cd project_code/
+         - ansible-playbook-deploy.yml -i "$PRODUCTION_SERVER," -e branch=master
                  
