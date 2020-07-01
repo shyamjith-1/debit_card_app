@@ -26,16 +26,11 @@ pipelines:
              
              
     - step:
+         image: williamyeh/ansible:debian9
          name: deployment
          deployment: production
          caches:
            - maven
          script:
-                 - pipe: microsoft/azure-web-apps-deploy:1.0.3
-                   variables:
-                           AZURE_APP_ID: $AZURE_APP_ID
-                           AZURE_PASSWORD: $AZURE_PASSWORD
-                           AZURE_TENANT_ID: $AZURE_TENANT_ID
-                           AZURE_RESOURCE_GROUP: $AZURE_RESOURCE_GROUP
-                           AZURE_APP_NAME: $AZURE_APP_NAME
-                           ZIP_FILE: $ZIP_FILE
+            - ansible-playbook deploy.yml -i "$PRODUCTION_SERVER," -e branch=master
+                 
