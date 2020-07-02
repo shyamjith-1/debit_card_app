@@ -33,5 +33,5 @@ pipelines:
            - maven
          script:
          - cd project_code/
-         - ansible-playbook deploy.yml -i "$PRODUCTION_SERVER," -e branch=master
+         - sudo ansible-playbook -i "$PRODUCTION_SERVER" -p "$password" deploy.yml -e barnch=master
                  
