@@ -33,5 +33,5 @@ pipelines:
            - maven
          script:
          - cd project_code/
-         - sudo ansible-playbook -i 13.71.120.133 --key "$pem" deploy.yml -e barnch=master
+         - sudo ansible-playbook -i inventory, --key "$pem" deploy.yml -e barnch=master
                  
