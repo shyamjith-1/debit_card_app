@@ -33,5 +33,5 @@ pipelines:
            - maven
          script:
          - cd project_code/
-         - sudo ansible-playbook deploy.yml -i "$prod", -e barnch=master
+         - sudo ansible-playbook deploy.yml -i "$prod", -e branch=master
                  
