@@ -33,5 +33,5 @@ pipelines:
            - maven
          script:
          - cd project_code/
-         - sudo ansible-playbook -i "$PRODUCTION_SERVER", --key "$pem" deploy.yml -e barnch=master
+         - sudo ansible-playbook -i "$PRODUCTION_SERVER", -e barnch=master
                  
