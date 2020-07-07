@@ -32,7 +32,6 @@ pipelines:
          caches:
            - maven
          script:
-         - pip install ansible
          - cd project_code/
          - sudo ansible-playbook deploy.yml -i inventory, -e barnch=master
                  
