@@ -29,9 +29,7 @@ pipelines:
          image: williamyeh/ansible:debian9
          name: deployment
          deployment: production
-         caches:
-           - maven
          script:
          - cd project_code/
-         - ansible-playbook deploy.yml -i ./inventory -u ubuntu --private-key=~/.ssh/config, -e branch=master
+         - ansible-playbook deploy.yml -i ./inventory -u ubuntu, -e branch=master
                  
