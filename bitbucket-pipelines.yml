@@ -33,5 +33,5 @@ pipelines:
            - maven
          script:
          - cd project_code/
-         - ansible-playbook  deploy.yml -i ./inventory, -e branch=master
+         - ansible-playbook  deploy.yml -i ./inventory -u prod-bit, -e branch=master
                  
