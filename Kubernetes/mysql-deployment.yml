@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: mysql-db
   labels:
     app: mysql
-    tier: database
+    tier: database-db
 spec:
   selector: # mysql Pod Should contain same labels 
     matchLabels:
-      app: mysql
+      app: mysql-db
       tier: database
   strategy:
     type: Recreate
   template:
     metadata:
       labels: # Must match 'Service' and 'Deployment' selectors
-        app: mysql
+        app: mysql-db
         tier: database
     spec:
       containers:
@@ -48,3 +48,18 @@ spec:
         ports:
         - containerPort: 3306
           name: mysql
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-db
+  labels:
+    app: mysql-db
+spec:
+  ports:
+  - name: db-port
+    port: 3306
+    protocol: TCP
+    targetPort: 3306
+  selector:
+    app: mysql-db
+  type: ClusterIP
