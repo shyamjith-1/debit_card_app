@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: db-conf
 data:
- host: mysql
- name: test
+ host: mysql-db
+ name: debitcard_customer_mvc_cc
