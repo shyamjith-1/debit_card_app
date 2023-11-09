@@ -28,12 +28,12 @@ spec:
               configMapKeyRef:
                 name: db-conf 
                 key: name
-          - name: DB_USERNAME  # Setting Database username from Secret
+          - name: DB_USER  # Setting Database username from Secret
             valueFrom:
               secretKeyRef:
                 name: db-credentials # Secret Name
                 key: username
-          - name: DB_PASSWORD # Setting Database password from Secret
+          - name: DB_PASS # Setting Database password from Secret
             valueFrom:
               secretKeyRef:
                 name: db-credentials
