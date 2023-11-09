@@ -38,21 +38,37 @@ spec:
               secretKeyRef:
                 name: db-credentials
                 key: password  
----                
-kind: Service
+# ---                
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name: springboot-k8s-mysql
+#   labels:
+#     name: springboot-k8s-mysql
+# spec:
+#   ports:
+#     - nodePort: 30163 
+#       port: 8080      
+#       targetPort: 8080  
+#       protocol: TCP
+#   selector:           
+#     app: springboot-k8s-mysql
+#   type: NodePort       
+
+## you need to install LB controller
+---  
 apiVersion: v1
+kind: Service
 metadata:
   name: springboot-k8s-mysql
   labels:
     name: springboot-k8s-mysql
 spec:
+  type: LoadBalancer
   ports:
-    - nodePort: 30163 
-      port: 8080      
-      targetPort: 8080  
-      protocol: TCP
-  selector:           
+  - port: 8080
+    name: http
+    targetPort: 8080
+  selector:
     app: springboot-k8s-mysql
-  type: NodePort       
-
 
