@@ -10,8 +10,10 @@ phases:
 
   pre_build:
     commands:
-      - cd project_code
-      - mvn clean
+      - ls
+      - pwd
+      #- cd project_code
+     # - mvn clean
 
   build:
     commands:
