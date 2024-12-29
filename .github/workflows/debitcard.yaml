@@ -17,5 +17,5 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: |
-        mvn -B package --file pom.xml
+        mvn -B package --file project_code/pom.xml
         ls 
