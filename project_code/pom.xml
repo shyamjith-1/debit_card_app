@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mindtree</groupId>
 	<artifactId>debitcardcustomer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${env.VERSION}</version>
 	<packaging>war</packaging>
 	<name>debitcardcustomer</name>
 	<description>Demo project for Spring Boot</description>
