@@ -6,6 +6,15 @@ on:
         type: string
         required: true
         description: provide the env details 
+    secrets:
+      db_host:
+        required: true
+      db_name:
+        required: true
+      db_user:
+        required: true
+      db_pass:
+        required: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,7 +30,7 @@ jobs:
     - name: Build with Maven
       env:
         VERSION: 1.0.0
-        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_HOST: ${{ secrets.db_host }}
         DB_NAME: customerfocus
         DB_USER: root
         DB_PASS: adminadmin
@@ -35,10 +44,10 @@ jobs:
 
     - name: Debug Secrets
       run: |
-        echo "DB_HOST: ${{ secrets.DB_HOST }}" >> debug_secrets.log
-        echo "DB_NAME: ${{ secrets.DB_NAME }}" >> debug_secrets.log
-        echo "DB_USER: ${{ secrets.DB_USER }}" >> debug_secrets.log
-        echo "DB_PASS: ${{ secrets.DB_PASS }}" >> debug_secrets.log
+        echo "DB_HOST: ${{ secrets.db_host }}" >> debug_secrets.log
+        echo "DB_NAME: ${{ secrets.db_name }}" >> debug_secrets.log
+        echo "DB_USER: ${{ secrets.db_user }}" >> debug_secrets.log
+        echo "DB_PASS: ${{ secrets.db_pass }}" >> debug_secrets.log
     - name: Upload Secrets Log
       uses: actions/upload-artifact@v3
       with:
