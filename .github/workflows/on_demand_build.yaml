@@ -1,0 +1,15 @@
+name: build app
+on:
+  workflow_dispatch:
+    input:
+      environment:
+        required: true
+        description: "env details"
+        type: String
+jobs:
+  build:
+    steps:
+      - name: reusing workflow
+        uses: ./github/workflows/main.yaml
+        with:
+          environment: dev
