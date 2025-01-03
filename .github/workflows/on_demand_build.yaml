@@ -1,13 +1,13 @@
 name: build app
 on:
   workflow_dispatch:
-    input:
+    inputs:
       environment:
         required: true
         description: "env details"
-        type: String
+        type: string
 jobs:
   build:
-    uses: .github/workflows/main.yaml
+    uses: ./.github/workflows/main.yaml
     with:
-      environment: dev
+      environment: ${{ github.event.inputs.environment }}

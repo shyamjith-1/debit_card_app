@@ -1,9 +1,9 @@
 name: ci/cd pipeline for debitcard app
 on:
   workflow_call:
-    input:
+    inputs:
       environment:
-        type: String
+        type: string
         required: true
         description: provide the env details 
 jobs:
