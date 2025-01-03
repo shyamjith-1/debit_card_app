@@ -31,9 +31,9 @@ jobs:
       env:
         VERSION: 1.0.0
         DB_HOST: ${{ secrets.db_host }}
-        DB_NAME: customerfocus
-        DB_USER: root
-        DB_PASS: adminadmin
+        DB_NAME: ${{ secrets.db_name }}
+        DB_USER: ${{ secrets.db_user }}
+        DB_PASS: ${{ secrets.db_pass }}
       run: |
         cd project_code
         mvn clean install 
