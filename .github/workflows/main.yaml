@@ -5,7 +5,7 @@ on:
       environment:
         type: string
         required: true
-       description: provide the env details 
+        description: provide the env details 
 jobs:
   build:
     runs-on: ubuntu-latest
