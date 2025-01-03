@@ -8,8 +8,6 @@ on:
         type: String
 jobs:
   build:
-    steps:
-      - name: reusing workflow
-        uses: ./github/workflows/main.yaml
-        with:
-          environment: dev
+    uses: .github/workflows/main.yaml
+    with:
+      environment: dev
