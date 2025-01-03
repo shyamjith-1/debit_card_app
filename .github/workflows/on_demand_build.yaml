@@ -12,8 +12,9 @@ jobs:
     uses: ./.github/workflows/main.yaml
     with:
       environment: ${{ github.event.inputs.environment }}
-    secrets:
-      db_host: ${{ secrets.DB_HOST }}
-      db_name: ${{ secrets.DB_NAME }}
-      db_user: ${{ secrets.DB_USER }}
-      db_pass: ${{ secrets.DB_PASS }}
+    secrets: inherit
+    # secrets:
+    #   db_host: ${{ secrets.DB_HOST }}
+    #   db_name: ${{ secrets.DB_NAME }}
+    #   db_user: ${{ secrets.DB_USER }}
+    #   db_pass: ${{ secrets.DB_PASS }}
