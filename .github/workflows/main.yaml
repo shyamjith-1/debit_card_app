@@ -31,8 +31,8 @@ jobs:
       run: |
         commitid=$(git rev-parse --short HEAD)
         semanticVersion="1.0.0"
-        echo "VERSION=$semanticVersion-$commitid" >> $GITHUB_ENV
-        echo "$VERSION"
+        version=$semanticVersion-$commitid
+        echo "$version"
     - name: Build with Maven
 
         # DB_HOST: ${{ secrets.db_host }}
