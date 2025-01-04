@@ -32,9 +32,9 @@ jobs:
       run: |
         commitid=$(git rev-parse --short HEAD)
         semanticVersion="1.0.0"
-        export Ver=$semanticVersion-$commitid
+        #export Ver=$semanticVersion-$commitid
         echo "VERSION=$semanticVersion-$commitid" >> $GITHUB_ENV
-        echo "$Ver"
+        #echo "$Ver"
     - name: print env
       run: echo "$VERSION"
     - name: Build with Maven
@@ -54,11 +54,14 @@ jobs:
     - name: upload artifact 
       uses: actions/upload-artifact@v3
       with:
-        name: warfile
+        name: warfile-${{ env.VERSION }}
         path: |
-          ${{ GITHUB.WORKSPACE }}/project_code/target/**.war
+          ${{ GITHUB.WORKSPACE }}/project_code/target/debitcardcustomer-**.war
     
 
+    # - name: Upload Build Artifact to Artifactory
+    #     run: |
+    #          curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PASS }} -X PUT "https://tr1.jfrog.io/artifactory/generic-local/gcr/osr/application/audit-trail/application/Barossa-AuditTrailService.${{ env.BUILD_NUMBER }}.zip" -T ${{ github.workspace }}/project_code/target/*.war
 
 
     
