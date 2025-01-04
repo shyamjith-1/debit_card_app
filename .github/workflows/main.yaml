@@ -30,8 +30,7 @@ jobs:
     - name: generate version
       run: |
         commitid=$(git rev-parse --short HEAD)
-        semanticVersion="1.0.0"
-        version=$semanticVersion-$commitid
+
     - name: Build with Maven
 
         # DB_HOST: ${{ secrets.db_host }}
