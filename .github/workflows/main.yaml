@@ -27,13 +27,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+ 
     - name: generate version
       run: |
         commitid=$(git rev-parse --short HEAD)
         semanticVersion="1.0.0"
+        export Ver=$semanticVersion-$commitid
         echo "VERSION=$semanticVersion-$commitid" >> $GITHUB_ENV
-        echo "hii"
-        echo "$VERSION"
+        echo "$Ver"
     - name: print env
       run: echo "$VERSION"
     - name: Build with Maven
