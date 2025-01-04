@@ -29,9 +29,12 @@ jobs:
         cache: maven
     - name: generate version
       run: |
-        echo "hii"
+        commitid=$(git rev-parse --short HEAD)
+        semanticVersion="1.0.0"
+        #echo "VERSION=$semanticVersion-$commitid" >> $GITHUB_ENV
+        echo "$commitid"
     - name: Build with Maven
-
+      env:
         # DB_HOST: ${{ secrets.db_host }}
         # DB_NAME: ${{ secrets.db_name }}
         # DB_USER: ${{ secrets.db_user }}
