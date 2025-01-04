@@ -29,8 +29,7 @@ jobs:
         cache: maven
     - name: generate version
       run: |
-        commitid=$(git rev-parse --short HEAD)
-
+        echo "hii"
     - name: Build with Maven
 
         # DB_HOST: ${{ secrets.db_host }}
