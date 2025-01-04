@@ -1,5 +1,6 @@
 name: build app
 on:
+  push:
   workflow_dispatch:
     inputs:
       environment:
