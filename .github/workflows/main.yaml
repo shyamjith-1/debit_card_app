@@ -61,7 +61,7 @@ jobs:
 
     - name: Upload Build Artifact to Artifactory
         run: |
-             curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PASS }} -X PUT "https://18.116.72.114:8081/artifactory/generic-local/shyam/debitcard/debitcardapp.${{ env.VERSION }.war" -T ${{ github.workspace }}/project_code/target/*.war
+          curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PASS }} -X PUT "https://18.116.72.114:8081/artifactory/generic-local/shyam/debitcard/debitcardapp.${{ env.VERSION }}.war" -T ${{ github.workspace }}/project_code/target/*.war
 
 
 
