@@ -50,15 +50,18 @@ jobs:
       run: |
         cd project_code
         mvn clean install 
+        ls
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
       with:
-        projectBaseDir: .
+        projectBaseDir: ./project_code
+        sonar.java.binaries: ./project_code/target/classes
         args: >
           -Dsonar.projectKey=shyam
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        
 
     - name: upload artifact 
       uses: actions/upload-artifact@v3
