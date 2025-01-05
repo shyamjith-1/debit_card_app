@@ -50,18 +50,16 @@ jobs:
       run: |
         cd project_code
         mvn clean install 
-        cd target/classes
-        ls
-    # - name: SonarQube Scan
-    #   uses: sonarsource/sonarqube-scan-action@master
-    #   with:
-    #     projectBaseDir: project_code
-    #     sonar.java.binaries: project_code/target/classes/.classes
-    #     args: >
-    #       -Dsonar.projectKey=shyam
-    #   env:
-    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@master
+      with:
+        sonar.java.binaries: ${{ GITHUB.WORKSPACE }}/project_code/target/classes
+        args: >
+          -Dsonar.projectKey=shyam
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         
 
     - name: upload artifact 
@@ -69,7 +67,7 @@ jobs:
       with:
         name: warfile-${{ env.VERSION }}
         path: |
-          ${{ GITHUB.WORKSPACE }}/project_code/target
+          ${{ GITHUB.WORKSPACE }}/project_code/target/**.war
     
 
     - name: Upload Build Artifact to Jfrog 
