@@ -54,7 +54,7 @@ jobs:
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
       with:
-        sonar.exclusions: '**/test/**, **/generated/**, **/target/**'
+        sonar.java.binaries=**/target/classes
         args: >
           -Dsonar.projectKey=shyam
       env:
