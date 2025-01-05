@@ -51,7 +51,11 @@ jobs:
         cd project_code
         mvn clean install 
     - name: SonarQube Scan
-      uses: SonarSource/sonarqube-scan-action@v3 # Ex: v4.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+      uses: sonarsource/sonarqube-scan-action@master
+      with:
+        projectBaseDir: .
+        args: >
+          -Dsonar.projectKey=shyam
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
