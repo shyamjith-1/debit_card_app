@@ -50,6 +50,11 @@ jobs:
       run: |
         cd project_code
         mvn clean install 
+    - name: SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@v3 # Ex: v4.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
     - name: upload artifact 
       uses: actions/upload-artifact@v3
@@ -59,7 +64,7 @@ jobs:
           ${{ GITHUB.WORKSPACE }}/project_code/target/debitcardcustomer-**.war
     
 
-    - name: Upload Build Artifact to Artifactory
+    - name: Upload Build Artifact to Jfrog 
       run: |
         curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PASS }} -X PUT "http://18.116.72.114:8081/artifactory/generic-local/shyam/debitcard/debitcardapp.${{ env.VERSION }}.war" -T ${{ github.workspace }}/project_code/target/*.war
 
