@@ -88,7 +88,7 @@ jobs:
 
   generate-artifact:
     needs: build
-    runs-on: codebuild-demo-${{ github.run_id }}-${{ github.run_attempt }}
+    runs-on: codebuild-runner-project-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - name: download artifact
         uses: actions/download-artifact@v4
