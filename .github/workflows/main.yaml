@@ -19,7 +19,7 @@ jobs:
   build:
     outputs:
       version: steps.version-output.outputs.Version
-    runs-on: codebuild-demo-${{ github.run_id }}-${{ github.run_attempt }}
+    runs-on: codebuild-runner-project-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
     - name: checkout
       uses: actions/checkout@v3
