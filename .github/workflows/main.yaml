@@ -19,7 +19,7 @@ jobs:
   build:
     outputs:
       version: steps.version-output.outputs.Version
-    runs-on: ubuntu-latest
+    runs-on: codebuild-runner-project-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
     - name: checkout
       uses: actions/checkout@v3
@@ -85,18 +85,6 @@ jobs:
     #   run: |
     #     curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PASS }} -X PUT "http://18.116.72.114:8081/artifactory/generic-local/shyam/debitcard/debitcardapp.${{ env.VERSION }}.war" -T ${{ github.workspace }}/project_code/target/*.war
 
-
-
-  generate-artifact:
-    needs: build
-    runs-on: codebuild-runner-project-${{ github.run_id }}-${{ github.run_attempt }}
-    steps:
-      - name: download artifact
-        uses: actions/download-artifact@v4
-        with:
-          #name: warfile-${{ needs.build.outputs.version }}
-          name: warfile
-          path: ${{ github.workspace }}
       - name: get the latest AMI
         run: |
           BASE_AMI=$(aws ec2 describe-images --filters "Name=virtualization-type,Values=hvm" "Name=state,Values=available" "Name=name,Values=ubuntu/images/*/ubuntu*"  --query "Images[?Tags[?Key=='assetId' && Value=='202990']].[ImageId]" --output text)
