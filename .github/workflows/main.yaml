@@ -92,5 +92,6 @@ jobs:
         echo "BASE_AMI=$BASE_AMI" >> $GITHUB_ENV
         ls
 
-    - name: print image
-      run: echo ${{ env.BASE_AMI }}
+
+    - name: push to s3
+      run: aws s3 cp ${{ GITHUB.WORKSPACE }}/project_code/target/**.war s3://debitcard-artifact
