@@ -17,6 +17,8 @@ on:
     #     required: true
 jobs:
   build:
+    outputs:
+      version: steps.version-output.outputs.Version
     runs-on: ubuntu-latest
     steps:
     - name: checkout
@@ -35,12 +37,14 @@ jobs:
         distribution: 'temurin'
  
     - name: generate version
+      id: version-output
       run: |
         commitid=$(git rev-parse --short HEAD)
         semanticVersion="1.0.0"
         #export Ver=$semanticVersion-$commitid
         echo "VERSION=$semanticVersion-$commitid" >> $GITHUB_ENV
         #echo "$Ver"
+        echo "Version=$semanticVersion-$commitid" >> $GITHUB_OUTPUT
     - name: print env
       run: echo "$VERSION"
     - name: Build with Maven
@@ -83,3 +87,21 @@ jobs:
 
 
 
+  generate-artifact:
+    needs: build
+    runs-on: codebuild-demo-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: warfile-${{ needs.build.outputs.version }}
+          path: ${ github.workspace }
+      - name: get the latest AMI
+        run: |
+          BASE_AMI=$(aws ec2 describe-images --filters "Name=virtualization-type,Values=hvm" "Name=state,Values=available" "Name=name,Values=ubuntu/images/*/ubuntu*"  --query "Images[?Tags[?Key=='assetId' && Value=='202990']].[ImageId]" --output text)
+          echo $BASE_AMI
+          echo "BASE_AMI=$BASE_AMI" >> $GITHUB_ENV
+          ls
+
+      - name: print image
+        run: echo ${{ env.BASE_AMI }}
