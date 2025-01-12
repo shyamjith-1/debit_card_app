@@ -80,9 +80,9 @@ jobs:
           ${{ GITHUB.WORKSPACE }}/project_code/target/**.war
     
 
-    - name: Upload Build Artifact to Jfrog 
-      run: |
-        curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PASS }} -X PUT "http://18.116.72.114:8081/artifactory/generic-local/shyam/debitcard/debitcardapp.${{ env.VERSION }}.war" -T ${{ github.workspace }}/project_code/target/*.war
+    # - name: Upload Build Artifact to Jfrog 
+    #   run: |
+    #     curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PASS }} -X PUT "http://18.116.72.114:8081/artifactory/generic-local/shyam/debitcard/debitcardapp.${{ env.VERSION }}.war" -T ${{ github.workspace }}/project_code/target/*.war
 
 
 
